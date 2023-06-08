@@ -1,7 +1,7 @@
 creds-var.tf
 ssh/
+terraform.tfstate
+terraform.tfstate.backup
 .terraform/
-
 connection/
 .terraform.tfstate.lock.info
-terraform.tfstate
