@@ -4,3 +4,4 @@ ssh/
 
 connection/
 .terraform.tfstate.lock.info
+terraform.tfstate
