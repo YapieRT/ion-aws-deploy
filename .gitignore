@@ -1,0 +1,6 @@
+creds-var.tf
+ssh/
+.terraform/
+
+connection/
+.terraform.tfstate.lock.info

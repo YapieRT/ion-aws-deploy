@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  ion-ui:
+    build:
+      context: /home/ubuntu/ion-organizer/.
+      dockerfile: /home/ubuntu/ion-organizer/Dockerfile
+    image: ion-organizer-ui
+    container_name: ion-ui
+    ports:
+      - 80:80
+
+  ion-api:
+    build:
+      context: /home/ubuntu/ion-organizer-api/.
+      dockerfile: /home/ubuntu/ion-organizer-api/Dockerfile
+    image: ion-organizer-api
+    container_name: ion-api
+    ports:
+      - 8080:8080
