@@ -51,10 +51,16 @@ sudo sed -i 's/EXPOSE 8080/EXPOSE '${PORT}'/g' /home/ubuntu/ion-organizer-api/Do
 
 sudo sed -i 's/ENV PORT=8080/ENV PORT='${PORT}'/g' /home/ubuntu/ion-organizer-api/Dockerfile
 
-sudo sed -i 's/- 8080:8080/- '${PORT}':'${PORT}'/g' /home/ubuntu/docker-compose.yaml
+sudo sed -i 's/- 8080:8080/- '${PORT}':'${PORT}'/g' /home/ubuntu/docker-compose-stack.yaml
 
 # Starting containers
 
 cd /home/ubuntu
 
-sudo docker compose up -d
+sudo docker build -t ion-organizer-api ion-organizer-api/.
+
+sudo docker build -t ion-organizer-ui ion-organizer/.
+
+sudo docker swarm init
+
+sudo docker stack deploy -c docker-compose-stack.yaml ion-stack

@@ -39,11 +39,11 @@ variable "db_connection_dst" {
 
 variable "docker_compose_src" {
   type    = string
-  default = "./docker-compose.yaml"
+  default = "./docker-compose-stack.yaml"
 }
 variable "docker_compose_dst" {
   type    = string
-  default = "/home/ubuntu/docker-compose.yaml"
+  default = "/home/ubuntu/docker-compose-stack.yaml"
 }
 
 
@@ -71,7 +71,7 @@ variable "vpc_all_ips" {
 
 variable "wport" {
   type    = string
-  default = "8080"
+  default = "5000"
 }
 
 variable "sip" {
