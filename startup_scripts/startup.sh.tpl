@@ -33,11 +33,9 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 
 # Clonning repos
 
-sudo git clone "https://github.com/YapieRT/ion-organizer.git" /home/ubuntu/ion-organizer
+sudo docker pull yapiert/ion-organizer-api:v1
 
-sudo git clone "https://github.com/YapieRT/ion-organizer-api.git" /home/ubuntu/ion-organizer-api
-
-sudo sleep 5
+sudo docker pull yapiert/ion-organizer-ui:v1
 
 # Moving creds
 
@@ -45,21 +43,17 @@ sudo mv /home/ubuntu/db.js /home/ubuntu/ion-organizer-api/
 
 # Setuping env variables
 
-sudo sed -i 's/ENV REACT_APP_BACKEND_IP=/ENV REACT_APP_BACKEND_IP=http:\/\/'${INITIAL_IP}':'${PORT}'/g' /home/ubuntu/ion-organizer/Dockerfile
-
-sudo sed -i 's/EXPOSE 8080/EXPOSE '${PORT}'/g' /home/ubuntu/ion-organizer-api/Dockerfile
-
-sudo sed -i 's/ENV PORT=8080/ENV PORT='${PORT}'/g' /home/ubuntu/ion-organizer-api/Dockerfile
+sudo sed -i 's/- REACT_APP_BACKEND_IP=/- REACT_APP_BACKEND_IP=http:\/\/'${INITIAL_IP}':'${PORT}'/g' /home/ubuntu/docker-compose-stack.yaml
 
 sudo sed -i 's/- 8080:8080/- '${PORT}':'${PORT}'/g' /home/ubuntu/docker-compose-stack.yaml
+
+sudo sed -i 's/- PORT=/- PORT='${PORT}'/g' /home/ubuntu/docker-compose-stack.yaml
+
+sudo sed -i 's/- 80:80/- 80:3000/g' /home/ubuntu/docker-compose-stack.yaml
 
 # Starting containers
 
 cd /home/ubuntu
-
-sudo docker build -t ion-organizer-api ion-organizer-api/.
-
-sudo docker build -t ion-organizer-ui ion-organizer/.
 
 sudo docker swarm init
 

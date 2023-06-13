@@ -39,7 +39,7 @@ variable "db_connection_dst" {
 
 variable "docker_compose_src" {
   type    = string
-  default = "./docker-compose-stack.yaml"
+  default = "docker/docker-compose-stack.yaml"
 }
 variable "docker_compose_dst" {
   type    = string

@@ -2,7 +2,7 @@ resource "aws_security_group" "Ion_SG" {
   name   = "Ion_SG"
   vpc_id = aws_vpc.Ion_VPC.id
   dynamic "ingress" {
-    for_each = ["22", "80", var.wport, "27017", ]
+    for_each = ["22", "80", var.wport, "27017"]
     content {
       from_port   = ingress.value
       to_port     = ingress.value

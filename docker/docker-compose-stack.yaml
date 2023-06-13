@@ -2,9 +2,13 @@ version: '3.8'
 
 services:
   ion-api:
-    image: ion-organizer-api
+    image: yapiert/ion-organizer-api:v1
     networks:
       - ion
+    volumes:
+      - ./db.js:/app/db.js
+    environment:
+      - PORT=
     deploy:
       replicas: 3
       update_config:
@@ -16,11 +20,13 @@ services:
       - 8080:8080
 
   ion-ui:
-    image: ion-organizer-ui
+    image: yapiert/ion-organizer-ui:v1
     networks:
       - ion
+    environment:
+      - REACT_APP_BACKEND_IP=
     deploy:
-      replicas: 3
+      replicas: 1
       update_config:
         parallelism: 2
         delay: 10s
